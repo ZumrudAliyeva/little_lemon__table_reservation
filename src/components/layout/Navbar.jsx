@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <>
-    <nav>
+    <nav role="navigation">
         <ul className={`${menuOpen ? 'opened' : ''}`}>
             <li>
                 <Link to={'/'} className='navlink' onClick={toggleMenu}>Home</Link>

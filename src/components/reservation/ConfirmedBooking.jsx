@@ -2,7 +2,7 @@ import React from 'react';
 
 const ConfirmedBooking = () => {
   return (
-    <div className='confirm_card'>
+    <div className='confirm_card' role="alert" aria-live="polite">
       <h1>Your booking has been confirmed! 🎉</h1>
       <p>Thank you for choosing Little Lemon. We look forward to serving you!</p>
     </div>

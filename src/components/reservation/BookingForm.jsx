@@ -63,7 +63,7 @@ const getIsFormValid = () => {
           onChange={(e) => setTime(e.target.value)}
           required
         >
-          <option value='' disabled>Select time *</option>
+          <option value='' disabled>Select time</option>
           {
             availableTimes.map((time, index) => (
               <option key={index}>{time}</option>
