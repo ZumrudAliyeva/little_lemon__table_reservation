@@ -21,8 +21,8 @@ const clearForm = () => {
 
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
-    setDate(selectedDate);
-    dispatch({ type: "UPDATE_TIMES", payload: selectedDate });
+  setDate(selectedDate);
+  dispatch({ type: "UPDATE_TIMES", payload: selectedDate });
   };
 
   return (
