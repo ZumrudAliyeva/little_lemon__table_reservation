@@ -13,6 +13,17 @@ const clearForm = () => {
   setOccasion('')
 }
 
+const getIsFormValid = () => {
+  return (
+    date &&
+    time &&
+    Number(guests) > 0 &&
+    occasion &&
+    new Date(new Date(date).toDateString()) >= new Date(new Date().toDateString())
+  );
+};
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = { date, time, guests, occasion };
@@ -26,6 +37,8 @@ const clearForm = () => {
   dispatch({ type: "UPDATE_TIMES", payload: selectedDate });
   };
 
+  const today = new Date().toISOString().split("T")[0];
+
   return (
     <>
       <form id="booking_form" onSubmit={handleSubmit}>
@@ -37,6 +50,7 @@ const clearForm = () => {
           name="res_date"
           value={date}
           onChange={handleDateChange}
+          min={today}
           required
         />
         </div>
@@ -47,8 +61,9 @@ const clearForm = () => {
           name="res_time"
           value={time}
           onChange={(e) => setTime(e.target.value)}
+          required
         >
-          <option value='' disabled>Select time</option>
+          <option value='' disabled>Select time *</option>
           {
             availableTimes.map((time, index) => (
               <option key={index}>{time}</option>
@@ -57,7 +72,7 @@ const clearForm = () => {
         </select>
         </div>
         <div>
-        <label htmlFor="guests">Number of guests</label>
+        <label htmlFor="guests">Number of guests *</label>
         <input
           type="number"
           placeholder="1"
@@ -67,22 +82,24 @@ const clearForm = () => {
           name="guests"
           value={guests}
           onChange={(e) => setGuests(e.target.value)}
+          required
         />
         </div>
         <div>
-        <label htmlFor="occasion">Occasion</label>
+        <label htmlFor="occasion">Occasion *</label>
         <select
           id="occasion"
           name="occasion"
           value={occasion}
           onChange={(e) => setOccasion(e.target.value)}
+          required
         >
           <option value='' disabled>Select occasion</option>
           <option>Birthday</option>
           <option>Anniversary</option>
         </select>
         </div>
-        <button type="submit">Make Your reservation</button>
+        <button type="submit" disabled={!getIsFormValid()}>Make Your Reservation</button>
       </form>
     </>
   );
